@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import Copyright from "./views/Copyright";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -20,6 +22,8 @@ export default function RootLayout({
         <Header />
         {/* HomePage */}
         <main className="px-8">{children}</main>
+        <Footer />
+        <Copyright />
       </body>
     </html>
   );
