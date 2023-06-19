@@ -6,19 +6,19 @@ const Header = () => {
   return (
     <div className="w-full">
       <div className="w-11/12 mx-auto flex justify-between items-center py-6">
-        <Image src={logo} alt="OpenMarket logo" className="w-40" />
+        <Link href={"/"}><Image src={logo} alt="OpenMarket logo" className="w-40" /></Link>
         <ul className="flex gap-x-10">
           <li className="text-lg">
-            <Link href={"/"}>Female</Link>
+            <Link href={"/category/female"}>Female</Link>
           </li>
           <li className="text-lg">
-            <Link href={"/"}>Male</Link>
+            <Link href={"/category/male"}>Male</Link>
           </li>
           <li>
-            <Link href={"/"}>Kids</Link>
+            <Link href={"/category/kids"}>Kids</Link>
           </li>
           <li>
-            <Link href={"/"}>All Products</Link>
+            <Link href={"/products"}>All Products</Link>
           </li>
         </ul>
         <div className="w-10 h-10 rounded-full bg-gray-200 flex justify-center items-center">
