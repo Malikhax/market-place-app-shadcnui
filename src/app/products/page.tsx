@@ -8,7 +8,7 @@ const AllProducts =()=>{
           {
             Products.map((items)=>{
               return(
-                <ProductCard key={items.id} title={items.name} price={items.price} img={items.img as StaticImageData} category={items.category} />
+                <ProductCard key={items.id} title={items.name} price={items.price} img={items.img as StaticImageData} category={items.category} id={items.id}/>
               )
             })
           }

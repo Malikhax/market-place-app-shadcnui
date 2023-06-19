@@ -1,5 +1,9 @@
 import { Product } from "./types";
 import P1 from "/public/p1.webp";
+import ProductImg1 from "@/images/products/productimg1.png"
+import ProductImg2 from "@/images/products/productimg2.png"
+import ProductImg3 from "@/images/products/productimg3.png"
+import ProductImg4 from "@/images/products/productimg4.png"
 export const Products:Product[]=[
     {
         id:1,
@@ -13,7 +17,7 @@ export const Products:Product[]=[
         name:'Product 2',
         category:'female',
         price:200,
-        img:P1
+        img:ProductImg1
     },
     {
         id:3,
