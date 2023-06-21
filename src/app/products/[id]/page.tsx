@@ -11,7 +11,7 @@ export default function Page({ params }: { params: { id: number } }) {
   const result = getProductDetail(params.id);
   console.log(result)
   return (
-    <div className="flex flex-col  gap-10 mt-16 py-10 box-border md:flex-row">
+    <div className="flex flex-col justify-center gap-10 mt-16 py-10 box-border md:flex-row">
       <div className="flex gap-4">
         <div className="flex flex-col  gap-4">
           <Image src={result?.img as StaticImageData} alt="producr img" className="w-20" />
@@ -19,13 +19,13 @@ export default function Page({ params }: { params: { id: number } }) {
           <Image src={result?.img as StaticImageData} alt="producr img" className="w-20" />
           <Image src={result?.img as StaticImageData} alt="producr img" className="w-20" />
         </div>
-        <div className="inline-flex">
-          <Image src={result?.img as StaticImageData} alt="producr img"  className="w-screen"/>
+        <div className="inline-flex flex-1">
+          <Image src={result?.img as StaticImageData} alt="producr img"  className="w-screen max-h-screen"/>
         </div>
       </div>
-      <div className="min-w-fit">
-        <h1 className="text-4xl font-semibold max-w-xs">{result?.name}</h1>
-        <p className="text-lg">{result?.category}</p>
+      <div className="min-w-fit w-1/2">
+        <h1 className="text-4xl font-semibold">{result?.name}</h1>
+        <p className="text-lg">{result?.tagline}</p>
         <h1 className="font-semibold mt-6">Select Size</h1>
         <div className="flex gap-2 list-none mt-4">
           <li className="p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-white hover:shadow-2xl hover:border w-8 h-8 text-center">XS</li>

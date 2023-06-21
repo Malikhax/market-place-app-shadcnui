@@ -5,7 +5,7 @@ const ProductCard = (props:{title:string,price:number,img:StaticImageData,catego
   return (
     <div className="py-5">
       <Link href={`/products/${props.id}`}>
-        <Image src={props.img} alt="product image" className="hover:scale-105"/>
+        <Image src={props.img} alt="product image" className="hover:scale-105 h-96 w-80"/>
       </Link>
       <h3 className="font-bold text-lg mt-3">{props.title}</h3>
       <p className="font-bold text-lg">${props.price}</p>
