@@ -14,6 +14,19 @@ export const product ={
             type:"string"
         },
         {
+            name:"price",
+            title:"Product Price",
+            type:"number"
+        },
+        {
+            name:"category",
+            title:"Product category",
+            type:"reference",
+            to:[{
+                type:"category"
+            }]
+        },
+        {
             name:"image",
             title:"Product image",
             type:"image"
