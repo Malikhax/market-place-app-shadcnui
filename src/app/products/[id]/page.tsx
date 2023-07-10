@@ -3,29 +3,47 @@ import { Button } from "@/components/ui/button";
 import { Products } from "@/utils/mock";
 import Image, { StaticImageData } from "next/image";
 import { ShoppingCart } from "lucide-react";
-const getProductDetail = (id: number) => {
-  return Products.find((products) => products.id == id);
+import { getProductData } from "../page";
+import { Image as IImage} from "sanity"
+import { urlForImage } from "../../../../sanity/lib/image";
+
+interface IProduct{
+  title:string,
+  description:string,
+  _id:string,
+  price:number,
+  category:{
+    name:string
+  },
+  image:IImage
+}
+const data:IProduct[] =await getProductData();
+const getProductDetail = (id: string) => {
+  return data.find((products) => products._id == id);
 };
 
-export default function Page({ params }: { params: { id: number } }) {
+const getProductByCategory = (category: string) => {
+  return data.filter((products) => products.category.name == category);
+};
+export default function Page({ params }: { params: { id: string } }) {
   const result = getProductDetail(params.id);
   console.log(result)
   return (
-    <div className="flex flex-col justify-center gap-10 mt-16 py-10 box-border md:flex-row">
+    <div className="flex flex-col justify-center gap-10 mt-16 py-10 box-border md:flex-row w-11/12 mx-auto">
       <div className="flex gap-4">
         <div className="flex flex-col  gap-4">
-          <Image src={result?.img as StaticImageData} alt="producr img" className="w-20" />
-          <Image src={result?.img as StaticImageData} alt="producr img" className="w-20" />
-          <Image src={result?.img as StaticImageData} alt="producr img" className="w-20" />
-          <Image src={result?.img as StaticImageData} alt="producr img" className="w-20" />
+          <Image src={urlForImage(result.image).url()} width={32} height={32} alt="producr img" className="w-20" />
+          <Image src={urlForImage(result.image).url()} width={32} height={32} alt="producr img" className="w-20" />
+          <Image src={urlForImage(result.image).url()} width={32} height={32} alt="producr img" className="w-20" />
+          <Image src={urlForImage(result.image).url()} width={32} height={32} alt="producr img" className="w-20" />
         </div>
-        <div className="inline-flex flex-1">
-          <Image src={result?.img as StaticImageData} alt="producr img"  className="w-screen max-h-screen"/>
+        <div className="inline-flex flex-1 max-h-[800px] max-w-[800px]">
+          <Image src={urlForImage(result.image).url()} width={1000} height={1000} alt="producr img"  className="w-screen max-h-screen"/>
         </div>
       </div>
       <div className="min-w-fit w-1/2">
-        <h1 className="text-4xl font-semibold">{result?.name}</h1>
-        <p className="text-lg">{result?.tagline}</p>
+        <h1 className="text-4xl font-semibold flex flex-wrap">{result?.title}</h1>
+        <p className="text-lg">{result?.description}</p>
         <h1 className="font-semibold mt-6">Select Size</h1>
         <div className="flex gap-2 list-none mt-4">
           <li className="p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-white hover:shadow-2xl hover:border w-8 h-8 text-center">XS</li>
