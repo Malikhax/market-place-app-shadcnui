@@ -7,6 +7,10 @@ import { getProductData } from "../page";
 import { Image as IImage} from "sanity"
 import { urlForImage } from "../../../../sanity/lib/image";
 
+const data =await getProductData();
+const getProductDetail = (id: string) => {
+  return data.find((products:IProduct) => products._id == id);
+};
 interface IProduct{
   title:string,
   description:string,
@@ -17,26 +21,12 @@ interface IProduct{
   },
   image:IImage
 }
-const data:IProduct[] =await getProductData();
-const getProductDetail = (id: string) => {
-  return data.find((products) => products._id == id);
-};
-
-const getProductByCategory = (category: string) => {
-  return data.filter((products) => products.category.name == category);
-};
-export default function Page({ params }: { params: { id: string } }) {
-  const result = getProductDetail(params.id);
+export default async function Page({ params }: { params: { id: string } }) {
+  const result:IProduct = getProductDetail(params.id);
   console.log(result)
   return (
     <div className="flex flex-col justify-center gap-10 mt-16 py-10 box-border md:flex-row w-11/12 mx-auto">
       <div className="flex gap-4">
-        <div className="flex flex-col  gap-4">
-          <Image src={urlForImage(result.image).url()} width={32} height={32} alt="producr img" className="w-20" />
-          <Image src={urlForImage(result.image).url()} width={32} height={32} alt="producr img" className="w-20" />
-          <Image src={urlForImage(result.image).url()} width={32} height={32} alt="producr img" className="w-20" />
-          <Image src={urlForImage(result.image).url()} width={32} height={32} alt="producr img" className="w-20" />
-        </div>
         <div className="inline-flex flex-1 max-h-[800px] max-w-[800px]">
           <Image src={urlForImage(result.image).url()} width={1000} height={1000} alt="producr img"  className="w-screen max-h-screen"/>
         </div>
