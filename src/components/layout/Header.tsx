@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "../../../public/Logo.webp";
+import logo from "@/images/Logo.webp";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 const Header = () => {
