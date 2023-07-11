@@ -1,9 +1,21 @@
 import Image, { StaticImageData } from "next/image";
-import P1 from "/public/p1.webp";
 import ProductCard from "@/components/ProductCard";
-import { Products } from "@/utils/mock";
+import { getProductData } from "@/app/products/page";
+import { Image as IImage} from "sanity"
+import { urlForImage } from "../../../sanity/lib/image";
+const data:IProduct[] =await getProductData();
+interface IProduct{
+  title:string,
+  description:string,
+  _id:string,
+  price:number,
+  category:{
+    name:string
+  },
+  image:IImage
+}
 const ProductList = () => {
-  const productchecks=Products.slice(0,3);
+  const productchecks=data.slice(0,3);
   return (
     <section className="w-full mt-20">
       <div className="w-11/12 mx-auto">
@@ -22,7 +34,7 @@ const ProductList = () => {
           {
             productchecks.map((items)=>{
               return(
-                <ProductCard key={items.id} title={items.name} price={items.price} img={items.img as StaticImageData} category={items.category} id={items.id} />
+                <ProductCard key={items._id} title={items.title} price={items.price} img={urlForImage(items.image).url()} description={items.description} category={items.category.name} id={items._id} />
               )
             })
           }
