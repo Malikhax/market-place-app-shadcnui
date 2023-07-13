@@ -3,6 +3,8 @@ import Image, { StaticImageData } from "next/image";
 import { getProductData } from "@/app/products/page";
 import { Image as IImage} from "sanity"
 import { urlForImage } from "../../../sanity/lib/image";
+import Quantity from "@/components/Quantity";
+import deleteImg from "@/images/delete-outline.svg"
 
 const data =await getProductData();
 const getProductDetail = (id: string) => {
@@ -51,6 +53,10 @@ const Cart =async()=>{
                                     <h4>Delivery Estimation</h4>
                                     <p>5 Working Days</p>
                                     <p>{result.price}</p>
+                                </div>
+                                <div>
+                                    <Image src={deleteImg} alt="img" />
+                                    <Quantity q={1} />
                                 </div>
                             </div>
                         )
