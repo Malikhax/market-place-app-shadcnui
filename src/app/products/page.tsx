@@ -29,7 +29,7 @@ interface IProduct{
 }
 const AllProducts =async () =>{
   const data:IProduct[] =await getProductData();
-  console.log(data)
+  // console.log(data)
     return(
           <div className="flex justify-evenly mt-16 py-10 flex-wrap">
             {

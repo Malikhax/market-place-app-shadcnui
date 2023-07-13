@@ -22,7 +22,9 @@ const Header = () => {
           </li>
         </ul>
         <div className="w-10 h-10 rounded-full bg-gray-200 flex justify-center items-center">
-          <ShoppingCart className="h-6 w-6" />
+          <Link href={"/cart"}>
+            <ShoppingCart className="h-6 w-6" />
+          </Link>
         </div>
       </div>
     </div>

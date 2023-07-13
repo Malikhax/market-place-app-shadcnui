@@ -1,8 +1,19 @@
+"use client"
 import Image,{StaticImageData} from "next/image";
-import { Image as IImage } from "sanity";
 import Link from "next/link";
 import { Button } from "./ui/button";
+
 const ProductCard = (props:{title:string,price:number,img:StaticImageData | string,category:string,description:string, id:string}) => {
+  const handleAddToCart=async()=>{
+      const res=await fetch("/api/cart",{
+        method:"POST",
+        body:JSON.stringify({
+          product_id:props.id
+        })
+      })
+      const result =await res.json()
+      console.log(result)
+  }
   return (
     <div className="py-5">
       <Link href={`/products/${props.id}`}>
@@ -11,7 +22,7 @@ const ProductCard = (props:{title:string,price:number,img:StaticImageData | stri
       <h3 className="font-bold text-lg mt-3">{props.title}</h3>
       <p className="font-bold text-lg"><span className="text-base font-normal capitalize">{props.description}</span></p>
       <p className="font-bold text-lg">${props.price}</p>
-      <Button className="py-1 px-3 text-xs ">Add to Cart</Button>
+      <Button onClick={handleAddToCart} className="py-1 px-3 text-xs">Add to Cart</Button>
     </div>
   );
 };
