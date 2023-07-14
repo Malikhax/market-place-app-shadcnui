@@ -5,6 +5,7 @@ import { Image as IImage} from "sanity"
 import { urlForImage } from "../../../sanity/lib/image";
 import Quantity from "@/components/Quantity";
 import deleteImg from "@/images/delete-outline.svg"
+import DeleteCard from "./DeleteCard";
 
 const data =await getProductData();
 const getProductDetail = (id: string) => {
@@ -45,17 +46,17 @@ const Cart =async()=>{
                     data.map((item)=>{
                         let result:IProduct = getProductDetail(item.product_id);
                         return(
-                            <div className="flex">
+                            <div className="flex gap-4">
                                 <Image src={urlForImage(result.image).url()} alt="img" width={200} height={200} className="rounded-lg" />
-                                <div>
-                                    <h1>{result.title}</h1>
+                                <div className="flex flex-col gap-4">
+                                    <h1 className="text-xl font-semibold">{result.title}</h1>
                                     <h4>{result.description}</h4>
-                                    <h4>Delivery Estimation</h4>
+                                    <h4 className="font-medium text-yellow-400">Delivery Estimation</h4>
                                     <p>5 Working Days</p>
-                                    <p>{result.price}</p>
+                                    <p className="font-medium">Price: ${result.price.toFixed(2)}</p>
                                 </div>
-                                <div>
-                                    <Image src={deleteImg} alt="img" />
+                                <div className="flex flex-col justify-between items-end">
+                                    <DeleteCard id={result._id}/>
                                     <Quantity q={1} />
                                 </div>
                             </div>

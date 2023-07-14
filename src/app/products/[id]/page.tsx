@@ -7,7 +7,8 @@ import { getProductData } from "../page";
 import { Image as IImage} from "sanity"
 import { urlForImage } from "../../../../sanity/lib/image";
 import Quantity from "@/components/Quantity";
-
+import AddToCart from "@/components/AddToCart";
+let q=1;
 const data =await getProductData();
 const getProductDetail = (id: string) => {
   return data.find((products:IProduct) => products._id == id);
@@ -43,9 +44,10 @@ export default async function Page({ params }: { params: { id: string } }) {
           <li className="p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-white hover:shadow-2xl hover:border w-8 h-8 text-center">L</li>
           <li className="p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-white hover:shadow-2xl hover:border w-8 h-8 text-center">XL</li>
         </div>
-        <Quantity q={1}/>
+        <Quantity q={q}/>
         <div className="mt-5 flex gap-2 items-center">
-          <Button className="rounded-none md:px-10 flex gap-2"><ShoppingCart/>Add to Cart</Button>
+          {/* <Button className="rounded-none md:px-10 flex gap-2"><ShoppingCart/>Add to Cart</Button> */}
+          <AddToCart id={result._id} />
           <h1 className="font-bold text-2xl">$ {result?.price}</h1>
         </div>
       </div>

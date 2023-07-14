@@ -1,15 +1,16 @@
 "use client"
 import { useState } from "react";
 const Quantity = (props:{q:number}) => {
+    
     const addQuantity=()=>{
         setQuantiy(quantity+1)
     }
     const subQuantity=()=>{
         if(quantity>1){
-            setQuantiy(quantity-1)
+          setQuantiy(quantity-1)
         }
     }
-    const [quantity,setQuantiy]= useState(props.q);
+    let [quantity,setQuantiy]= useState(props.q);
   return (
     <section>
       <div className="mt-6 flex items-center gap-2">

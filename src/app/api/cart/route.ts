@@ -2,7 +2,7 @@ import { NextRequest,NextResponse } from "next/server"
 import { db,cartTable } from "@/lib/drizzle"
 import {v4 as uuid} from "uuid"
 import { cookies } from "next/headers"
-import { eq } from "drizzle-orm"
+import { and, eq, sql } from "drizzle-orm"
 
 export const GET =async(request :NextRequest)=>{
     const req=request.nextUrl
@@ -23,6 +23,7 @@ export const POST =async(request :NextRequest)=>{
     const uid=uuid();
     const setCookies=cookies();
     const user_id=cookies().get("user_id")?.value;
+    
     if(!user_id){
         setCookies.set("user_id",uid)
     }
@@ -32,6 +33,18 @@ export const POST =async(request :NextRequest)=>{
             quantity:1,
             user_id:cookies().get("user_id")?.value as string
         }).returning();
+        return NextResponse.json({res})
+    }catch(error){
+        console.log(error);
+        return NextResponse.json({message:"Something went wrong"})
+
+    }
+}
+export const DELETE =async(request :NextRequest)=>{
+    const req = await request.json();
+    const user_id=cookies().get("user_id")?.value;
+    try{
+        const res =await db.delete(cartTable).where(sql`${cartTable.id}==${user_id} and ${cartTable.product_id}==${req.product_id}`).returning();
         return NextResponse.json({res})
     }catch(error){
         console.log(error);
