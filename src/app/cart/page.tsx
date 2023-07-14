@@ -47,7 +47,7 @@ const Cart =async()=>{
                         let result:IProduct = getProductDetail(item.product_id);
                         return(
                             <div className="flex gap-4">
-                                <Image src={urlForImage(result.image).url()} alt="img" width={200} height={200} className="rounded-lg" />
+                                <Image key={result._id} src={urlForImage(result.image).url()} alt="img" width={200} height={200} className="rounded-lg" />
                                 <div className="flex flex-col gap-4">
                                     <h1 className="text-xl font-semibold">{result.title}</h1>
                                     <h4>{result.description}</h4>
