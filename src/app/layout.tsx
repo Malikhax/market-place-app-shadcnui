@@ -1,8 +1,10 @@
+"use client"
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Copyright from "./views/Copyright";
+import Providers from "@/components/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -18,12 +20,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* Header */}
-        <Header />
-        {/* HomePage */}
-        <main className="px-8">{children}</main>
-        <Footer />
-        <Copyright />
+          <Providers>
+            {/* Header */}
+            <Header />
+            {/* HomePage */}
+            <main className="px-8">
+              {children}
+              </main>
+            <Footer />
+            <Copyright />
+          </Providers>
       </body>
     </html>
   );

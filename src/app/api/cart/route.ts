@@ -41,10 +41,13 @@ export const POST =async(request :NextRequest)=>{
     }
 }
 export const DELETE =async(request :NextRequest)=>{
-    const req = await request.json();
+    // const req = await request.json();
+    const res=request.nextUrl
+    const uid=res.searchParams.get("product_id") as string
     const user_id=cookies().get("user_id")?.value;
     try{
-        const res =await db.delete(cartTable).where(sql`${cartTable.id}==${user_id} and ${cartTable.product_id}==${req.product_id}`).returning();
+        // const res =await db.delete(cartTable).where(sql`${cartTable.id}==${user_id} and ${cartTable.product_id}==${req.product_id}`).returning();
+        const res =await db.delete(cartTable).where(and(eq(cartTable.user_id, user_id as string), eq(cartTable.product_id,uid as string)));
         return NextResponse.json({res})
     }catch(error){
         console.log(error);

@@ -2,6 +2,8 @@
 import Image,{StaticImageData} from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { useDispatch } from "react-redux";
+import { cartActions } from "@/app/features/addToCard/addToCardSlice";
 
 const AddToCart = (props:{id:string}) => {
   const handleAddToCart=async()=>{
