@@ -2,13 +2,8 @@ import Image from "next/image";
 import logo from "@/images/Logo.webp";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
-import { RootState } from "@/app/store/store";
-import { useSelector } from "react-redux";
 
 const Header = () => {
-  const cartValue=useSelector(
-    (state:RootState)=>state.cart.totalQuantity
-  );
   return (
     <div className="w-full">
       <div className="w-11/12 mx-auto flex justify-between items-center py-6">
