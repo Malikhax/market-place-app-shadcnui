@@ -6,7 +6,6 @@ import { urlForImage } from "../../../sanity/lib/image";
 import Quantity from "@/components/Quantity";
 import deleteImg from "@/images/delete-outline.svg"
 import DeleteCard from "./DeleteCard";
-
 const data =await getProductData();
 const getProductDetail = (id: string) => {
   return data.find((products:IProduct) => products._id == id);

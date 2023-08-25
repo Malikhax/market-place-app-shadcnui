@@ -2,6 +2,7 @@
 import Image,{StaticImageData} from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { Toaster,toast } from "react-hot-toast";
 
 const ProductCard = (props:{title:string,price:number,img:StaticImageData | string,category:string,description:string, id:string}) => {
   const handleAddToCart=async()=>{
@@ -12,6 +13,7 @@ const ProductCard = (props:{title:string,price:number,img:StaticImageData | stri
         })
       })
       const result =await res.json()
+      toast.success("added successfully")
       console.log(result)
   }
   return (
@@ -23,6 +25,7 @@ const ProductCard = (props:{title:string,price:number,img:StaticImageData | stri
       <p className="font-bold text-lg"><span className="text-base font-normal capitalize">{props.description}</span></p>
       <p className="font-bold text-lg">${props.price}</p>
       <Button onClick={handleAddToCart} className="py-1 px-3 text-xs">Add to Cart</Button>
+      <Toaster  />
     </div>
   );
 };

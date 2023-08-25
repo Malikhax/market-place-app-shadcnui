@@ -1,6 +1,7 @@
 "use client"
 import deleteImg from "@/images/delete-outline.svg"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 const DeleteCard=(props:{id:string})=>{
     const handleDelete=async()=>{
         const req=await fetch(`api/cart?product_id=${props.id}`,{
@@ -15,7 +16,9 @@ const DeleteCard=(props:{id:string})=>{
         })
         const result =await req.json()
         console.log(result)
+        router.refresh();
     }
+    const router=useRouter();
     return(
         <Image onClick={handleDelete} src={deleteImg} alt="img" width={30} />
     )
